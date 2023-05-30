@@ -1,7 +1,10 @@
-import { create } from "zustand";
-import { SearchState, Filter } from "./models";
+import { StateCreator, create } from "zustand";
+import { FilterState, Filter } from "./models";
+import { devtools, persist, createJSONStorage } from "zustand/middleware";
 
-const useFilterStore = create<SearchState>((set) => ({
+type FilterStoreType = StateCreator<FilterState>;
+
+const filterStoreTemplate: FilterStoreType = (set) => ({
   searchTerm: "",
   setSearchTerm: (term: string) => set({ searchTerm: term }),
   filterValues: [],
@@ -18,6 +21,14 @@ const useFilterStore = create<SearchState>((set) => ({
         return { filterValues: [...state.filterValues, filter] };
       }
     }),
-}));
+});
+const useFilterStore = create<FilterState>()(
+  devtools(
+    persist(filterStoreTemplate, {
+      name: "filterStore",
+      storage: createJSONStorage(() => sessionStorage),
+    })
+  )
+);
 
 export default useFilterStore;
