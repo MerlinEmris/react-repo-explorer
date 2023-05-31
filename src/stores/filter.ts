@@ -1,5 +1,5 @@
 import { StateCreator, create } from "zustand";
-import { FilterState, Filter } from "./models";
+import { FilterState, Filter } from "../models";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
 
 type FilterStoreType = StateCreator<FilterState>;
