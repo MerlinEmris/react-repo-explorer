@@ -15,9 +15,8 @@ const RepositoryFetch: React.FC = () => {
   const [getUserRepos, status2] = useLazyQuery(GET_USER_REPOSITORIES());
   const doneTypingInterval = 1000 * 2;
 
-  const typingTimer = useRef<ReturnType<typeof setTimeout>>(null);
   useEffect(() => {
-    typingTimer.current = setTimeout(() => {
+    const typingTimer = setTimeout(() => {
       if (searchTerm === "") {
         getUserRepos().then((response) => {
           console.log("user", response.data.viewer.repositories.nodes);
@@ -33,7 +32,7 @@ const RepositoryFetch: React.FC = () => {
       }
     }, doneTypingInterval);
     return () => {
-      clearInterval(typingTimer.current);
+      clearInterval(typingTimer);
     };
   }, [searchTerm]);
 
