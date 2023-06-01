@@ -20,6 +20,8 @@ export interface RepositoryState {
 export interface UserState {
   user: User | null;
   setUser: (data: User) => void;
+  token: string | null;
+  setToken: (data: string) => void;
 }
 
 export interface Repository {

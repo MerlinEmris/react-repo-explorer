@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useLazyQuery } from "@apollo/client";
 import {
   GET_REPOSITORIES,
@@ -13,19 +13,28 @@ const RepositoryFetch: React.FC = () => {
   const setRepos = useRepositoryStore((state) => state.setRepository);
   const [getRepos, status1] = useLazyQuery(GET_REPOSITORIES());
   const [getUserRepos, status2] = useLazyQuery(GET_USER_REPOSITORIES());
+  const doneTypingInterval = 1000 * 2;
+
+  const typingTimer = useRef<ReturnType<typeof setTimeout>>(null);
   useEffect(() => {
-    if (searchTerm === "") {
-      getUserRepos().then((response) => {
-        console.log(response.data.viewer.repositories.nodes);
-        setRepos(response.data.viewer.repositories.nodes);
-      });
-    } else {
-      getRepos({
-        variables: { query: `name:${searchTerm}`, type: "REPOSITORY" },
-      }).then((response) => {
-        setRepos(response.data.search.nodes);
-      });
-    }
+    typingTimer.current = setTimeout(() => {
+      if (searchTerm === "") {
+        getUserRepos().then((response) => {
+          console.log("user", response.data.viewer.repositories.nodes);
+          setRepos(response.data.viewer.repositories.nodes);
+        });
+      } else {
+        getRepos({
+          variables: { query: `name:${searchTerm}`, type: "REPOSITORY" },
+        }).then((response) => {
+          console.log("search", response.data.search.nodes);
+          setRepos(response.data.search.nodes);
+        });
+      }
+    }, doneTypingInterval);
+    return () => {
+      clearInterval(typingTimer.current);
+    };
   }, [searchTerm]);
 
   if (status1.loading || status2.loading) return <>loading ...</>;

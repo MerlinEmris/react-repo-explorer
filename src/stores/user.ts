@@ -6,7 +6,9 @@ type UserStoreType = StateCreator<UserState>;
 
 const userStoreTemplate: UserStoreType = (set) => ({
   user: null,
+  token: null,
   setUser: (data) => set({ user: data }),
+  setToken: (data) => set({ token: data }),
 });
 const useUserStore = create<UserState>()(
   devtools(

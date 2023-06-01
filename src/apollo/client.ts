@@ -1,6 +1,23 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
-export const client = new ApolloClient({
+import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import useUserStore from "../stores/user";
+
+const httpLink = createHttpLink({
   uri: "https://api.github.com/graphql",
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = useUserStore.getState().token;
+
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
+
+export const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-  headers: { Authorization: "bearer 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" },
 });
