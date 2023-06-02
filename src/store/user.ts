@@ -1,5 +1,5 @@
 import { StateCreator, create } from "zustand";
-import { UserState } from "../models";
+import { UserState } from "../types/store.types";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
 
 type UserStoreType = StateCreator<UserState>;

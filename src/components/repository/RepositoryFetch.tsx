@@ -3,7 +3,7 @@ import { useLazyQuery } from "@apollo/client";
 import {
   GET_REPOSITORIES,
   GET_USER_REPOSITORIES,
-} from "../../apollo/repositories";
+} from "../../api/apollo/repositories";
 import useFilterStore from "../../store/filter";
 import useRepositoryStore from "../../store/repository";
 import RepositoryContainer from "./RepositoryContainer";

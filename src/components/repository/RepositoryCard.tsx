@@ -1,5 +1,5 @@
 import React from "react";
-import { Repository } from "../../models";
+import { Repository } from "../../types/store.types";
 
 interface Props {
   data: Repository;

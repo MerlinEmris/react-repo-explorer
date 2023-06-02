@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import useUserStore from "../../store/user";
 import { useQuery } from "@apollo/client";
-import { GET_USER_DATA } from "../../apollo/repositories";
+import { GET_USER_DATA } from "../../api/apollo/repositories";
 
 const UserDetail: React.FC = () => {
   const setUser = useUserStore((state) => state.setUser);
