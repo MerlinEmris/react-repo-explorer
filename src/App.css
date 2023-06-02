@@ -1,0 +1,15 @@
+.container{
+    margin: 0 1em;
+}
+.repository-container {
+  display: grid;
+  gap: 1em 1em;
+  margin: 1em 0;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+.repository-card {
+  padding: 1em 1em;
+  display: inline-grid;
+  border: green solid 1px;
+  min-width: 320px;
+}

@@ -7,7 +7,7 @@ interface Props {
 
 const RepositoryCard: React.FC<Props> = ({ data }) => {
   return (
-    <div style={{ padding: "10px 8px 10px 8px", width: "30%" }}>
+    <div className="repository-card">
       <div>id:{data.id}</div>
       <div>name: {data.name}</div>
       <div>url: {data.url}</div>

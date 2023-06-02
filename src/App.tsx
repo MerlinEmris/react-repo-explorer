@@ -10,7 +10,7 @@ import useUserStore from "./stores/user";
 const App: React.FC = () => {
   const token = useUserStore((state) => state.token);
   return (
-    <>
+    <div className="container">
       <div>{token ? <UserDetail /> : <UserToken />}</div>
       {token ? (
         <div>
@@ -20,7 +20,7 @@ const App: React.FC = () => {
       ) : (
         <span>Need token to perform request!</span>
       )}
-    </>
+    </div>
   );
 };
 

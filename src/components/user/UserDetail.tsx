@@ -7,12 +7,12 @@ const UserDetail: React.FC = () => {
   const setUser = useUserStore((state) => state.setUser);
   const user = useUserStore((state) => state.user);
 
-  const { loading, error, data, refetch } = useQuery(GET_USER_DATA());
+  const { loading, error, refetch } = useQuery(GET_USER_DATA());
 
   useEffect(() => {
     if (!user)
-      refetch().then(() => {
-        setUser(data.viewer);
+      refetch().then((response) => {
+        setUser(response.data.viewer);
       });
   }, []);
 

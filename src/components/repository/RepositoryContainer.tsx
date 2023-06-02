@@ -6,7 +6,7 @@ const RepositoryContainer: React.FC = () => {
   const repos = useRepositoryStore((state) => state.repositories);
   return (
     <>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <div className="repository-container">
         {repos.map((repo) => (
           <RepositoryCard data={repo} key={repo.id} />
         ))}

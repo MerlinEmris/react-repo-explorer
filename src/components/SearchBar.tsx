@@ -17,8 +17,14 @@ const SearchBar: React.FC = () => {
 
   return (
     <>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <input
+          style={{
+            width: "600px",
+            minWidth: "320px",
+            height: "40px",
+            fontSize: "28px",
+          }}
           name="search"
           ref={ref}
           onChange={(e) => setSearchTerm(e.target.value)}
