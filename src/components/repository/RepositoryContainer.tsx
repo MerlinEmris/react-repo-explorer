@@ -1,5 +1,5 @@
 import React from "react";
-import useRepositoryStore from "../../stores/repository";
+import useRepositoryStore from "../../store/repository";
 import RepositoryCard from "./RepositoryCard";
 
 const RepositoryContainer: React.FC = () => {

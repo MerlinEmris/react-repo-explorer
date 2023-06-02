@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-import useFilterStore from "../stores/filter";
+import useFilterStore from "../store/filter";
 
 const SearchBar: React.FC = () => {
   const searchTerm = useFilterStore((state) => state.searchTerm);

@@ -4,8 +4,8 @@ import {
   GET_REPOSITORIES,
   GET_USER_REPOSITORIES,
 } from "../../apollo/repositories";
-import useFilterStore from "../../stores/filter";
-import useRepositoryStore from "../../stores/repository";
+import useFilterStore from "../../store/filter";
+import useRepositoryStore from "../../store/repository";
 import RepositoryContainer from "./RepositoryContainer";
 
 const RepositoryFetch: React.FC = () => {

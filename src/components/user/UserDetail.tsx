@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import useUserStore from "../../stores/user";
+import useUserStore from "../../store/user";
 import { useQuery } from "@apollo/client";
 import { GET_USER_DATA } from "../../apollo/repositories";
 

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import useUserStore from "../../stores/user";
+import useUserStore from "../../store/user";
 const UserToken: React.FC = () => {
   const setToken = useUserStore((state) => state.setToken);
   const ref = useRef<HTMLInputElement>(null);
