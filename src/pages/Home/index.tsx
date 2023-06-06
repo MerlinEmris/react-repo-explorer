@@ -4,6 +4,7 @@ import SearchBar from "../../components/SearchBar";
 import UserDetail from "../../components/user/UserDetail";
 import RepositoryFetch from "../../components/repository/RepositoryFetch";
 import UserToken from "../../components/user/UserToken";
+import Pagination from "../../components/repository/Pagination";
 import useUserStore from "../../store/user";
 
 const Home: React.FC = () => {
@@ -15,6 +16,7 @@ const Home: React.FC = () => {
         <div>
           <SearchBar />
           <RepositoryFetch />
+          <Pagination />
         </div>
       ) : (
         <></>

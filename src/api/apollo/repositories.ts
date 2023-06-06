@@ -1,25 +1,25 @@
 import { gql } from "@apollo/client";
 
-export const GET_REPOSITORIES = () => {
+export const GET_STARTCURSOR = () => {
   return gql`
-    query GetRepositories(
-      $query: String!
-      $endCursor: String
-      $startCursor: String
-    ) {
-      search(
-        first: 10
-        type: REPOSITORY
-        query: $query
-        after: $endCursor
-        before: $startCursor
-      ) {
+    query GetStartCursor($query: String!, $startIndex: Int!) {
+      search(first: $startIndex, type: REPOSITORY, query: $query) {
         pageInfo {
           startCursor
           hasNextPage
           endCursor
           hasPreviousPage
         }
+        repositoryCount
+      }
+    }
+  `;
+};
+
+export const GET_REPOSITORIES = () => {
+  return gql`
+    query GetRepositories($query: String!, $after: String) {
+      search(first: 10, type: REPOSITORY, query: $query, after: $after) {
         nodes {
           ... on Repository {
             id

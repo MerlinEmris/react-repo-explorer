@@ -11,10 +11,16 @@ export interface FilterState {
 
 export interface RepositoryState {
   repositories: Repository[];
-  pageInfo: Pagination;
   setRepository: (repos: Repository[]) => void;
+
+  pageInfo: Pagination;
   setPageInfo: (pInfo: Pagination) => void;
-  // repositoryDetail: RepositoryDetail;
+
+  repositoryCount: number;
+  setRepositoryCount: (count: number) => void;
+
+  currentPageNumber: number;
+  setCurrentPageNumber: (pageNumber: number) => void;
 }
 
 export interface UserState {
@@ -65,8 +71,8 @@ export interface User {
 }
 
 export interface Pagination {
-  startCursor: string;
+  startCursor: string | null;
   hasNextPage: boolean;
-  endCursor: string;
+  endCursor: string | null;
   hasPreviousPage: boolean;
 }
