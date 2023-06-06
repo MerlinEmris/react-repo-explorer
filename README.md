@@ -23,6 +23,10 @@ yarn install
 yarn dev
 ```
 
+# Token
+
+[Get token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+
 ## Available commands
 
 <p>In this project, you can run the following scripts:</p>
