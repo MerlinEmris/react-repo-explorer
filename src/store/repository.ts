@@ -1,8 +1,6 @@
-import { useQuery } from "@apollo/client";
 import { StateCreator, create } from "zustand";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
 import { Pagination, Repository, RepositoryState } from "../types/store.types";
-import { GET_REPOSITORIES } from "../api/apollo/repositories";
 
 type RepositoryStoreType = StateCreator<RepositoryState>;
 

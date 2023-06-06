@@ -4,7 +4,8 @@ import useFilterStore from "../store/filter";
 
 const SearchBar: React.FC = () => {
   const searchTerm = useFilterStore((state) => state.searchTerm);
-  const setSearchTerm = useFilterStore((store) => store.setSearchTerm);
+  const setSearchTerm = useFilterStore((state) => state.setSearchTerm);
+  const setFilterValues = useFilterStore((state) => state.setOrAddFilterValue);
 
   const ref = useRef<HTMLInputElement>(null);
 
@@ -14,6 +15,14 @@ const SearchBar: React.FC = () => {
       ref.current.value = searchTerm;
     }
   }, []);
+  const handleSearchBarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    if (e.target.value == "") {
+      setFilterValues({ name: "query", value: "user:@me" });
+    } else {
+      setFilterValues({ name: "query", value: `name:${e.target.value}` });
+    }
+  };
 
   return (
     <>
@@ -27,7 +36,7 @@ const SearchBar: React.FC = () => {
           }}
           name="search"
           ref={ref}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleSearchBarChange}
         ></input>
       </div>
     </>

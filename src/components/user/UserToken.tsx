@@ -1,8 +1,10 @@
 import React, { useRef, useEffect } from "react";
 import useUserStore from "../../store/user";
+import useFilterStore from "../../store/filter";
 const UserToken: React.FC = () => {
   const setToken = useUserStore((state) => state.setToken);
   const ref = useRef<HTMLInputElement>(null);
+  const setFilterValues = useFilterStore((state) => state.setOrAddFilterValue);
   useEffect(() => {
     if (ref.current) {
       ref.current.focus();
@@ -10,6 +12,7 @@ const UserToken: React.FC = () => {
   }, []);
   const handleSaveButtonClick = () => {
     setToken(ref.current?.value);
+    setFilterValues({ name: "query", value: "user:@me" });
   };
   return (
     <div>

@@ -1,44 +1,51 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useLazyQuery } from "@apollo/client";
-import {
-  GET_REPOSITORIES,
-  GET_USER_REPOSITORIES,
-} from "../../api/apollo/repositories";
+import { GET_REPOSITORIES } from "../../api/apollo/repositories";
 import useFilterStore from "../../store/filter";
 import useRepositoryStore from "../../store/repository";
 import RepositoryContainer from "./RepositoryContainer";
+import Pagination from "./Pagination";
 
 const RepositoryFetch: React.FC = () => {
-  const searchTerm = useFilterStore((state) => state.searchTerm);
+  const filterValues = useFilterStore((state) => state.filterValues);
+
   const setRepos = useRepositoryStore((state) => state.setRepository);
-  const [getRepos, status1] = useLazyQuery(GET_REPOSITORIES());
-  const [getUserRepos, status2] = useLazyQuery(GET_USER_REPOSITORIES());
+  const setPageInfo = useRepositoryStore((state) => state.setPageInfo);
+
+  const [getRepos, { loading, error }] = useLazyQuery(GET_REPOSITORIES());
   const doneTypingInterval = 1000 * 2;
 
+  const getReposFromGitHub = () => {
+    const variables = Object.fromEntries(
+      filterValues.map((value) =>
+        Object.entries(value).reduce((prev, next) => [prev[1], next[1]])
+      )
+    );
+    console.log(variables);
+    getRepos({
+      variables,
+    }).then((response) => {
+      setRepos(response.data.search.nodes);
+      setPageInfo(response.data.search.pageInfo);
+      console.log(response.data.search.pageInfo);
+    });
+  };
+
   useEffect(() => {
-    const typingTimer = setTimeout(() => {
-      if (searchTerm === "") {
-        getUserRepos().then((response) => {
-          console.log("user", response.data.viewer.repositories.nodes);
-          setRepos(response.data.viewer.repositories.nodes);
-        });
-      } else {
-        getRepos({
-          variables: { query: `name:${searchTerm}`, type: "REPOSITORY" },
-        }).then((response) => {
-          console.log("search", response.data.search.nodes);
-          setRepos(response.data.search.nodes);
-        });
-      }
-    }, doneTypingInterval);
+    const typingTimer = setTimeout(getReposFromGitHub, doneTypingInterval);
     return () => {
       clearInterval(typingTimer);
     };
-  }, [searchTerm]);
+  }, [filterValues, doneTypingInterval]);
 
-  if (status1.loading || status2.loading) return <>loading ...</>;
-  if (status1.error || status2.error) return <>error: {error.message}</>;
-  return <RepositoryContainer />;
+  if (loading) return <>loading ...</>;
+  if (error) return <>error: {error.message}</>;
+  return (
+    <>
+      <RepositoryContainer />
+      <Pagination />
+    </>
+  );
 };
 
 export default RepositoryFetch;

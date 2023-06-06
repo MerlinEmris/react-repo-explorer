@@ -61,6 +61,7 @@ export interface User {
   email: string;
   id: string;
   name: string;
+  login: string;
 }
 
 export interface Pagination {
