@@ -20,3 +20,8 @@
   text-overflow: ellipsis;
   max-width: 320px;
 }
+
+.active{
+  color: blue;
+  background-color: thistle;
+}

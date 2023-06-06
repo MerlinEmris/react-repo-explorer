@@ -8,6 +8,7 @@ const repositoryStoreTemplate: RepositoryStoreType = (set) => ({
   repositories: [],
   setRepository: (repositories: Repository[]) =>
     set({ repositories: repositories }),
+
   pageInfo: {
     endCursor: "",
     hasNextPage: false,
@@ -15,6 +16,13 @@ const repositoryStoreTemplate: RepositoryStoreType = (set) => ({
     hasPreviousPage: false,
   },
   setPageInfo: (info: Pagination) => set({ pageInfo: info }),
+
+  repositoryCount: 0,
+  setRepositoryCount: (count: number) => set({ repositoryCount: count }),
+
+  currentPageNumber: 0,
+  setCurrentPageNumber: (pageNumber: number) =>
+    set({ currentPageNumber: pageNumber }),
 });
 const useRepositoryStore = create<RepositoryState>()(
   devtools(

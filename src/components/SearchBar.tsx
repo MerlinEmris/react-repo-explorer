@@ -1,12 +1,16 @@
 import React, { useEffect, useRef } from "react";
 
 import useFilterStore from "../store/filter";
+import useRepositoryStore from "../store/repository";
 
 const SearchBar: React.FC = () => {
   const searchTerm = useFilterStore((state) => state.searchTerm);
   const setSearchTerm = useFilterStore((state) => state.setSearchTerm);
   const setFilterValues = useFilterStore((state) => state.setOrAddFilterValue);
-
+  const setCurrentPageNumber = useRepositoryStore(
+    (state) => state.setCurrentPageNumber
+  );
+  const repositoryCount = useRepositoryStore((state) => state.repositoryCount);
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -17,6 +21,7 @@ const SearchBar: React.FC = () => {
   }, []);
   const handleSearchBarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
+    setCurrentPageNumber(0);
     if (e.target.value == "") {
       setFilterValues({ name: "query", value: "user:@me" });
     } else {
@@ -26,11 +31,17 @@ const SearchBar: React.FC = () => {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <input
           style={{
             width: "600px",
-            minWidth: "320px",
+            minWidth: "300px",
             height: "40px",
             fontSize: "28px",
           }}
@@ -38,6 +49,10 @@ const SearchBar: React.FC = () => {
           ref={ref}
           onChange={handleSearchBarChange}
         ></input>
+        <div style={{ fontSize: "1em", margin: "0 4px" }}>
+          <span>Result:</span>
+          <span>{repositoryCount}</span>
+        </div>
       </div>
     </>
   );

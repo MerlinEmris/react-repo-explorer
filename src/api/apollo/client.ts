@@ -1,4 +1,5 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
+// import { offsetLimitPagination } from "@apollo/client/utilities";
 import { setContext } from "@apollo/client/link/context";
 import useUserStore from "../../store/user";
 
@@ -20,4 +21,10 @@ const authLink = setContext((_, { headers }) => {
 export const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
+  queryDeduplication: false,
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: "cache-and-network",
+    },
+  },
 });
