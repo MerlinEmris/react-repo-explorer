@@ -6,4 +6,8 @@ export default defineConfig({
       // implement node event listeners here
     },
   },
+  env: {
+    BASE_URL: 'http://localhost:4000',
+    TOKEN: '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'
+  }
 });

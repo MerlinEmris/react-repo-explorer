@@ -10,7 +10,7 @@ const SearchBar: React.FC = () => {
   const setCurrentPageNumber = useRepositoryStore(
     (state) => state.setCurrentPageNumber
   );
-  const repositoryCount = useRepositoryStore((state) => state.repositoryCount);
+
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -49,10 +49,6 @@ const SearchBar: React.FC = () => {
           ref={ref}
           onChange={handleSearchBarChange}
         ></input>
-        <div style={{ fontSize: "1em", margin: "0 4px" }}>
-          <span>Result:</span>
-          <span>{repositoryCount}</span>
-        </div>
       </div>
     </>
   );
