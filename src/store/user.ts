@@ -5,8 +5,8 @@ import { devtools, persist, createJSONStorage } from "zustand/middleware";
 type UserStoreType = StateCreator<UserState>;
 
 const userStoreTemplate: UserStoreType = (set) => ({
-  user: null,
-  token: null,
+  user: undefined,
+  token: undefined,
   setUser: (data) => set({ user: data }),
   setToken: (data) => set({ token: data }),
 });
