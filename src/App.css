@@ -13,6 +13,7 @@
   display: inline-grid;
   border: green solid 1px;
   min-width: 320px;
+  border-radius: 10px;
 }
 .long-text {
   overflow: hidden;

@@ -40,6 +40,10 @@ const Pagination: React.FC = () => {
           )
         )}
       </ul>
+      <div style={{ fontSize: "1em", margin: "0 4px" }}>
+        <span>Result:</span>
+        <span>{repositoryCount}</span>
+      </div>
     </div>
   );
 };
