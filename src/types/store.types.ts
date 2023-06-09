@@ -27,7 +27,7 @@ export interface UserState {
   user: User | null;
   setUser: (data: User) => void;
   token: string | null;
-  setToken: (data: string) => void;
+  setToken: (data: string | undefined) => void;
 }
 
 export interface Repository {
