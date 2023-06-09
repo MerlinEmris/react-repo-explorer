@@ -30,7 +30,7 @@ const Pagination: React.FC = () => {
           },
           (_, i) => (
             <button
-              onClick={(e) => handlePaginationLink(i)}
+              onClick={() => handlePaginationLink(i)}
               style={{ margin: "0 1em", padding: "4px 8px" }}
               className={`${active == i && "active"}`}
               key={i}
