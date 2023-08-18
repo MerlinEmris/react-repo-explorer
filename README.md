@@ -42,3 +42,4 @@ yarn dev
 | yarn test     | Run the app tests.                                                          |
 
 ## Preview
+<img width="881" alt="Screenshot 2023-08-18 122151" src="https://github.com/MerlinEmris/react-repo-explorer/assets/24506754/47cb39f6-8ffb-40bc-8d1f-128e7c0e1396">
