@@ -1,6 +1,6 @@
-# test-app
+# React GitHub repository explorer
 
-A modern minimal Vite + React + TypeScript
+A modern minimal Vite + React + TypeScript with Apollo client
 
 ![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
