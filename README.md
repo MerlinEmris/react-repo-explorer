@@ -41,10 +41,4 @@ yarn dev
 | yarn lint:fix | Runs the Eslint and fix the code problems                                   |
 | yarn test     | Run the app tests.                                                          |
 
-## TODO
-
-- [ ] Eslint
-- [ ] Prettier
-- [ ] Testing Tools
-
-## License
+## Preview
