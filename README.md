@@ -14,6 +14,7 @@ A modern minimal Vite + React + TypeScript with Apollo client
 - 🔨 [EsLint](https://eslint.org/) - Pluggable JavaScript linter
 - 🌀 [Prettier](https://prettier.io) - Opinionated Code Formatter
 - ⚙️ [Jest](https://jestjs.io/) - Testing libraries
+- 💾 [Zustand](https://github.com/pmndrs/zustand) - Zustand state management
 
 ## Usage
 
